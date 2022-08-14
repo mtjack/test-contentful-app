@@ -10,21 +10,24 @@ interface SidebarProps {
 }
 
 const CONTENT_FIELD_ID = 'content';
-const READING_TIME = 'readingTime';
+const READING_TIME_FIELD_ID = 'readingTime';
+const WORD_COUNT_FIELD_ID = 'wordCount';
 
 const Sidebar = (props: SidebarProps) => {
 
   const { sdk } = props;
 
   const contentField = sdk.entry.fields[CONTENT_FIELD_ID];
-  const readingTimeField = sdk.entry.fields[READING_TIME];
+  const readingTimeField = sdk.entry.fields[READING_TIME_FIELD_ID];
+  const wordCountField = sdk.entry.fields[WORD_COUNT_FIELD_ID];
 
   const [logText, setLogText] = useState(contentField.getValue());
 
   useEffect(() => {
     const detach = contentField.onValueChanged((value) => {
       setLogText(value);
-      readingTimeField.setValue(readingTime(value || '').minutes)
+      readingTimeField.setValue(readingTime(value || '').minutes);
+      wordCountField.setValue(readingTime(value || '').words);
     });
 
     return () => detach();
