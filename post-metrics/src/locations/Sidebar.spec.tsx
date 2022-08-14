@@ -2,7 +2,6 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import { render } from '@testing-library/react';
 import { mockCma, mockSdk } from '../../test/mocks';
-import { useCMA, useSDK } from '@contentful/react-apps-toolkit';
 
 jest.mock('@contentful/react-apps-toolkit', () => ({
   useSDK: () => mockSdk,
